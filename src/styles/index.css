@@ -1,0 +1,23 @@
+:root {
+  --deep-purple: rgb(30, 3, 54);
+  --deep-purple-dark: rgb(21, 2, 37);
+
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: Consolas;
+  margin: 1rem 0px;
+}
