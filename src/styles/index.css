@@ -1,7 +1,17 @@
 :root {
+  --purple-light: rgb(112, 15, 197);
+  --purple: rgb(84, 14, 146);
+  --deep-purple-light: rgb(36, 3, 65);
   --deep-purple: rgb(30, 3, 54);
   --deep-purple-dark: rgb(21, 2, 37);
+  --deep-purple-dark-200: rgb(14, 0, 26);
+  --navbar-height: 80px;
+}
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -12,7 +22,7 @@ html {
 }
 
 body {
-  margin: 0;
+  width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,4 +30,19 @@ body {
 code {
   font-family: Consolas;
   margin: 1rem 0px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--deep-purple); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--deep-purple-dark); 
 }

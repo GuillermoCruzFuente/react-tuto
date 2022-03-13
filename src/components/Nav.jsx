@@ -10,26 +10,22 @@ function Nav() {
 
     return (
         <nav>
-            <div id='nav-body'>
-                <a className='nav-link' href='/' >../code</a>
+            <a id='nav-link' href='/' >../code</a>
 
-                <button className='nav-button' onClick={a}>
-                    menu
-                </button>
-            </div>
+            <button id='nav-button' onClick={a}>menu</button>
 
             <div id='menu-container'>
                 <ol>
                     <li>
-                        <a href="/">home</a>
+                        <a href="#">home</a>
                     </li>
 
                     <li>
-                        <a href="/">about</a>
+                        <a href="#">about</a>
                     </li>
 
                     <li>
-                        <a href="/">contact</a>
+                        <a href="#">contact</a>
                     </li>
                 </ol>
             </div>

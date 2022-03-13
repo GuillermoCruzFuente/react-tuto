@@ -1,0 +1,35 @@
+.feature-container {
+    background-color: var(--deep-purple-dark);
+    padding: 2rem;
+
+    width: min(350px, 100%);
+    height: auto;
+
+    margin: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 10px black;
+}
+
+.feature-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.feature-img {
+    width: 1.5rem;
+    margin-right: 1rem;
+}
+
+.feature-title {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.feature-description {
+    font-size: 0.85rem;
+    line-height: 1.25rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--purple-light);
+}
