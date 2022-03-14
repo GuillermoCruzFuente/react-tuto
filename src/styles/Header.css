@@ -18,6 +18,8 @@ header .header-title {
     padding-top: 3rem;
     text-align: center;
     font-size: calc(10px + max(2vmax, 2vmin));
+
+    /* background-color: chocolate; */
 }
 
 header .header-description {
@@ -28,17 +30,21 @@ header .header-description {
     margin-top: 1rem;
     font-size: 1rem;
     font-weight: 500;
+
+    /* background-color: chocolate; */
 }
 
 .features-container {
     width: 100%;
     box-sizing: border-box;
-    /* background-color: var(--deep-purple-dark-200); */
-    padding: 3rem 0;
     margin-top: 3rem;
-    /* padding-inline: 12.5%; */
-    
     display: flex;
     justify-content: center;
     flex-flow: row wrap;
+}
+
+@media screen and (max-width: 750px) {
+    header .header-description {
+        width: 100%;
+    }
 }

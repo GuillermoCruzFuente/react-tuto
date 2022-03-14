@@ -8,7 +8,7 @@ nav {
 
     background-color: rgba(49, 11, 71, 0.5);
     backdrop-filter: blur(3px);
-    box-shadow: 0px 0px 15px rgba(109, 109, 109, 0.25);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 
     position: fixed;
     z-index: 1000;
@@ -22,6 +22,7 @@ nav {
     width: fit-content;
     height: fit-content;
     color: var(--purple);
+    color: #fff;
     transition: 200ms color;
 
     position: absolute;
@@ -56,12 +57,12 @@ nav {
 #menu-container {
     position: absolute;
     top: 0px;
-    right: -100%;
+    right: 0;
     background-color: var(--deep-purple-dark);
+    background-color: black;
+    /* width: calc(100vw + 100px); */
     width: 100vw;
     height: 100vh;
-
-    transition: 500ms right ease;
 
     z-index: 1400;
 
@@ -86,6 +87,27 @@ li a {
 
 li a:hover {
     color: var(--purple-light);
-   
 }
 
+.menu-enter {
+    opacity: 0;
+    /* transform: translateX(80px); */
+}
+.menu-enter-active {
+    opacity: 1;
+    /* transform: translateX(0px); */
+
+    /* transition: opacity 500ms, transform 500ms; */
+    transition: opacity 300ms;
+}
+.menu-exit {
+    /* transform: translateX(0px); */
+    opacity: 1;
+}
+.menu-exit-active {
+    opacity: 0;
+    /* transform: translateX(80px); */
+    /* transition: opacity 300ms, transform 300ms; */
+    transition: opacity 300ms;
+
+}

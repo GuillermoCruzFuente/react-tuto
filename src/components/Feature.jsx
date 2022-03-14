@@ -1,14 +1,14 @@
 import '../styles/Feature.css'
 
-function Feature(prop) {
+function Feature(props) {
     return (
         <article className='feature-container'>
             <div className='feature-title-container'>
-                <img className='feature-img' src={prop.feature.imgUrl} alt={prop.feature.imgAlt} />
-                <h1 className='feature-title'>{prop.feature.title}</h1>
+                <img className='feature-img' src={props.feature.imgUrl} alt={props.feature.imgAlt} />
+                <h1 className='feature-title'>{props.feature.title}</h1>
             </div>
 
-            <p className='feature-description'>{prop.feature.description}</p>
+            <p className='feature-description'>{props.feature.description}</p>
         </article>
     )
 }

@@ -1,36 +1,65 @@
+//dependencies
+import React, { Component } from 'react'
+import { CSSTransition } from 'react-transition-group'
+
+//styles
 import '../styles/Nav.css'
 
-function Nav() {
-    let menuState = false
-    let a = () => {
-        menuState = !menuState
+class Nav extends Component {
 
-        menuState ? document.getElementById('menu-container').style.right = '0' : document.getElementById('menu-container').style.right = '-100%'
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            menuState: false
+        }
     }
 
-    return (
-        <nav>
-            <a id='nav-link' href='/' >../code</a>
+    changeMenuState = () => {
+        this.menuState = !this.menuState
 
-            <button id='nav-button' onClick={a}>menu</button>
+        this.setState({
+            menuState: this.menuState
+        })
+        
+        let html = document.getElementsByTagName('html')[0];
 
-            <div id='menu-container'>
-                <ol>
-                    <li>
-                        <a href="#">home</a>
-                    </li>
+        this.menuState ? html.style.overflowY = 'hidden' : html.style.overflowY = 'auto'
+    }
 
-                    <li>
-                        <a href="#">about</a>
-                    </li>
+    render() {
 
-                    <li>
-                        <a href="#">contact</a>
-                    </li>
-                </ol>
-            </div>
-        </nav>
-    )
+        return (
+            <nav>
+                <a id='nav-link' href='/' >../codeMe</a>
+
+                <button id='nav-button' onClick={this.changeMenuState}>menu</button>
+
+                <CSSTransition
+                in={this.state.menuState}
+                timeout={300}
+                classNames="menu"
+                unmountOnExit
+                >
+                    <div id='menu-container'>
+                        <ol>
+                            <li>
+                                <a href="#" onClick={this.changeMenuState}>home</a>
+                            </li>
+
+                            <li>
+                                <a href="#" onClick={this.changeMenuState}>about</a>
+                            </li>
+
+                            <li>
+                                <a href="#" onClick={this.changeMenuState}>contact</a>
+                            </li>
+                        </ol>
+                    </div>
+                </CSSTransition>
+            </nav>
+        )
+    }
 }
 
 export default Nav
