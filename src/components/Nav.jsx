@@ -6,6 +6,9 @@ import { CSSTransition } from 'react-transition-group'
 import '../styles/Nav.css'
 
 class Nav extends Component {
+    MENU_CONTAINER_TRANSITION_TIME = 200;
+    MENU_ITEMS_DELAY = 50;
+
     menuItems = [
         {
             name: 'home',
@@ -21,8 +24,8 @@ class Nav extends Component {
         }
     ]
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             menuState: false,
@@ -55,25 +58,20 @@ class Nav extends Component {
         this.menuState ? html.style.overflowY = 'hidden' : html.style.overflowY = 'auto'
     }
 
-    items() {
-        let array = this.menuItems.map((item, i) => {
-            <CSSTransition
+    render() {
+        let menuItemComponents = this.menuItems.map((item, i) => {
+            return <CSSTransition
+                key={item.name}
                 in={this.state.animState}
-                timeout={{enter: 500 + 50*i, exit: 500}}
-                // timeout={500 + 50 * i}
+                timeout={{ enter: this.MENU_CONTAINER_TRANSITION_TIME + this.MENU_ITEMS_DELAY * i, exit: this.MENU_CONTAINER_TRANSITION_TIME }}
                 classNames="menu-item"
                 mountOnEnter
                 unmountOnExit>
-                <li style={{ transitionDelay: `${50 * i}ms` }}>
+                <li style={{ transitionDelay: `${this.MENU_ITEMS_DELAY * i}ms` }}>
                     <a href={item.href} onClick={this.changeMenuState}>{item.name}</a>
                 </li>
             </CSSTransition>
         })
-
-        return array
-    }
-
-    render() {
 
         return (
             <nav>
@@ -85,49 +83,14 @@ class Nav extends Component {
                     in={this.state.menuState}
                     onEntered={this.handleOnEntered}
                     onExit={this.handleOnExit}
-                    timeout={300}
+                    timeout={this.MENU_CONTAINER_TRANSITION_TIME}
                     classNames="menu"
                     mountOnEnter
                     unmountOnExit
                 >
                     <div id='menu-container'>
                         <ol>
-                            <CSSTransition
-                                in={this.state.animState}
-                                timeout={500}
-                                classNames="menu-item"
-                                mountOnEnter
-                                unmountOnExit
-                            >
-                                <li>
-                                    <a href="#" onClick={this.changeMenuState}>home</a>
-                                </li>
-                            </CSSTransition>
-
-                            <CSSTransition
-                                in={this.state.animState}
-                                timeout={600}
-                                classNames="menu-item"
-                                mountOnEnter
-                                unmountOnExit
-                            >
-
-                                <li style={{transitionDelay: `${100}ms`}}>
-                                    <a href="#" onClick={this.changeMenuState}>about</a>
-                                </li>
-                            </CSSTransition>
-
-                            <CSSTransition
-                                in={this.state.animState}
-                                timeout={700}
-                                classNames="menu-item"
-                                mountOnEnter
-                                unmountOnExit
-                            >
-                                <li style={{transitionDelay: `${200}ms`}}>
-                                    <a href="#" onClick={this.changeMenuState}>contact</a>
-                                </li>
-                            </CSSTransition>
+                            {menuItemComponents}
                         </ol>
                     </div>
                 </CSSTransition>
