@@ -76,17 +76,19 @@ li {
 }
 
 li a {
-    font-size: 2rem;
+    font-size: 3rem;
     text-decoration: none;
     font-family: inherit;
     font-weight: 900;
     text-transform: uppercase;
-    color: var(--purple);
+    color: var(--purple-light);
     transition: 300ms color;
+
+    /* display: block; */
 }
 
 li a:hover {
-    color: var(--purple-light);
+    color: #fff;
 }
 
 .menu-enter {
@@ -110,4 +112,28 @@ li a:hover {
     /* transition: opacity 300ms, transform 300ms; */
     transition: opacity 300ms;
 
+}
+
+
+
+.menu-item-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.menu-item-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+
+    transition: transform 500ms, opacity 500ms;
+    /* transition-delay: 700ms; */
+}
+.menu-item-exit {
+    opacity: 1;
+    /* transform: translateY(0px); */
+}
+.menu-item-exit-active {
+    opacity: 0;
+    /* transform: translateY(80px); */
+    /* transition: transform 500ms, opacity 500ms; */
+    transition: opacity 500ms;
 }

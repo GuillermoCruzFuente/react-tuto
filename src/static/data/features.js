@@ -20,10 +20,10 @@ const features = [
     },
     {
         id: 3,
-        title: 'Modern desing',
+        title: 'Modern design',
         imgUrl: DesignImg,
         imgAlt: 'design things',
-        description: 'A great product need a great design'
+        description: 'A great product needs a great design'
     },
     {
         id: 4,
