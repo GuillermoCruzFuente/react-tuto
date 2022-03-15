@@ -91,45 +91,56 @@ li a:hover {
     color: #fff;
 }
 
+/* styles for menu container */
+$menu-container-enter-time: 300ms;
+$menu-container-out-time: 500ms;
+
+
 .menu-enter {
     opacity: 0;
-    /* transform: translateX(80px); */
 }
 .menu-enter-active {
     opacity: 1;
-    /* transform: translateX(0px); */
-
-    /* transition: opacity 500ms, transform 500ms; */
-    transition: opacity 300ms;
+    transition: opacity $menu-container-enter-time;
 }
+
+
 .menu-exit {
-    /* transform: translateX(0px); */
     opacity: 1;
 }
 .menu-exit-active {
     opacity: 0;
-    /* transform: translateX(80px); */
-    /* transition: opacity 300ms, transform 300ms; */
-    transition: opacity 300ms;
-
+    transition: opacity $menu-container-out-time;
 }
 
+/* styles for menu items entry */
+$menu-items-enter-time: 150ms;
+$menu-items-out-time: 200ms;
 
 
 .menu-item-enter {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(30px) rotate(4deg);
 }
 .menu-item-enter-active {
     opacity: 1;
-    transform: translateY(0px);
-    transition: transform 200ms, opacity 200ms;
+    transform: translateY(0px) rotate(0deg);
+
+    transition: transform $menu-items-enter-time, opacity $menu-items-enter-time, rotate $menu-items-enter-time;
+
     transition-timing-function: ease;
 }
+
+
 .menu-item-exit {
     opacity: 1;
+    transform: translateY(0px) rotate(0deg);
 }
 .menu-item-exit-active {
     opacity: 0;
-    transition: opacity 200ms;
+    transform: translateY(-30px) rotate(-4deg);
+    
+    transition: transform $menu-items-out-time, opacity $menu-items-out-time, rotate $menu-items-out-time;
+
+    transition-timing-function: ease;
 }

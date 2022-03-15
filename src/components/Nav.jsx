@@ -3,11 +3,16 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
 //styles
-import '../styles/Nav.css'
+import '../styles/Nav.scss'
 
 class Nav extends Component {
-    MENU_CONTAINER_TRANSITION_TIME = 200;
-    MENU_ITEMS_DELAY = 50;
+    // Remember change this values in Nav.scss file too
+    MENU_CONTAINER_ENTER_TIME = 300     //Duration for the menu container enter animation
+    MENU_CONTAINER_OUT_TIME = 500       //Duration for the out animation
+    MENU_ITEMS_ENTER_TIME = 150         //Duration for the item enter animation
+    MENU_ITEMS_OUT_TIME = 200           //Duration for the item out animation
+    MENU_ITEMS_ENTER_AT_TIME = 200      //The time to initiate the animation after the menu container animation start, this should be less than MENU_CONTAINER_ENTER_TIME
+    MENU_ITEMS_DELAY = 80              //Duration for delay between items
 
     menuItems = [
         {
@@ -24,6 +29,7 @@ class Nav extends Component {
         }
     ]
 
+
     constructor() {
         super()
 
@@ -34,9 +40,11 @@ class Nav extends Component {
     }
 
     handleOnEntered = () => {
-        this.setState({
-            animState: true
-        })
+        setTimeout(() => {
+            this.setState({
+                animState: true
+            })
+        }, this.MENU_ITEMS_ENTER_AT_TIME);
     }
 
     handleOnExit = () => {
@@ -52,8 +60,6 @@ class Nav extends Component {
             menuState: this.menuState
         })
 
-
-
         let html = document.getElementsByTagName('html')[0];
         this.menuState ? html.style.overflowY = 'hidden' : html.style.overflowY = 'auto'
     }
@@ -63,7 +69,7 @@ class Nav extends Component {
             return <CSSTransition
                 key={item.name}
                 in={this.state.animState}
-                timeout={{ enter: this.MENU_CONTAINER_TRANSITION_TIME + this.MENU_ITEMS_DELAY * i, exit: this.MENU_CONTAINER_TRANSITION_TIME }}
+                timeout={{ enter: this.MENU_ITEMS_ENTER_TIME + this.MENU_ITEMS_DELAY * i, exit: this.MENU_ITEMS_OUT_TIME }}
                 classNames="menu-item"
                 mountOnEnter
                 unmountOnExit>
@@ -81,9 +87,9 @@ class Nav extends Component {
 
                 <CSSTransition
                     in={this.state.menuState}
-                    onEntered={this.handleOnEntered}
+                    onEnter={this.handleOnEntered}
                     onExit={this.handleOnExit}
-                    timeout={this.MENU_CONTAINER_TRANSITION_TIME}
+                    timeout={{ enter: this.MENU_CONTAINER_ENTER_TIME, exit: this.MENU_CONTAINER_OUT_TIME }}
                     classNames="menu"
                     mountOnEnter
                     unmountOnExit
