@@ -9,22 +9,22 @@ class Nav extends Component {
     // Remember change this values in Nav.scss file too
     MENU_CONTAINER_ENTER_TIME = 300     //Duration for the menu container enter animation
     MENU_CONTAINER_OUT_TIME = 500       //Duration for the out animation
-    MENU_ITEMS_ENTER_TIME = 150         //Duration for the item enter animation
-    MENU_ITEMS_OUT_TIME = 200           //Duration for the item out animation
-    MENU_ITEMS_ENTER_AT_TIME = 200      //The time to initiate the animation after the menu container animation start, this should be less than MENU_CONTAINER_ENTER_TIME
-    MENU_ITEMS_DELAY = 80              //Duration for delay between items
+    MENU_ITEMS_ENTER_TIME = 600         //Duration for the item enter animation
+    MENU_ITEMS_OUT_TIME = 500           //Duration for the item out animation
+    MENU_ITEMS_ENTER_AT_TIME = 0      //The time to initiate the animation after the menu container animation start, this should be less than MENU_CONTAINER_ENTER_TIME
+    MENU_ITEMS_DELAY = 80               //Duration for delay between items
 
     menuItems = [
         {
-            name: 'home',
+            name: 'inicio',
             href: '#'
         },
         {
-            name: 'about',
+            name: 'nosotros',
             href: '#'
         },
         {
-            name: 'contact',
+            name: 'contacto',
             href: '#'
         }
     ]
@@ -39,7 +39,7 @@ class Nav extends Component {
         }
     }
 
-    handleOnEntered = () => {
+    handleOnEnter = () => {
         setTimeout(() => {
             this.setState({
                 animState: true
@@ -61,7 +61,16 @@ class Nav extends Component {
         })
 
         let html = document.getElementsByTagName('html')[0];
-        this.menuState ? html.style.overflowY = 'hidden' : html.style.overflowY = 'auto'
+        let navButton = document.getElementById('nav-button')
+
+        if(this.menuState) {
+            html.style.overflowY = 'hidden'
+            navButton.style.color = '#fff'
+        } else {
+            html.style.overflowY = 'auto'
+            navButton.style.color = '#000'
+        }
+
     }
 
     render() {
@@ -70,6 +79,8 @@ class Nav extends Component {
                 key={item.name}
                 in={this.state.animState}
                 timeout={{ enter: this.MENU_ITEMS_ENTER_TIME + this.MENU_ITEMS_DELAY * i, exit: this.MENU_ITEMS_OUT_TIME }}
+                // timeout={this.MENU_ITEMS_ENTER_TIME + this.MENU_ITEMS_DELAY * i}
+
                 classNames="menu-item"
                 mountOnEnter
                 unmountOnExit>
@@ -81,13 +92,35 @@ class Nav extends Component {
 
         return (
             <nav>
-                <a id='nav-link' href='/' >../codeMe</a>
+                <a id='nav-link' href='/' >INTELLIGENTIA</a>
 
-                <button id='nav-button' onClick={this.changeMenuState}>menu</button>
+                <div id="button-container">
+                    <button id='nav-button' onClick={this.changeMenuState}>menú</button>
 
-                <CSSTransition
+                    <CSSTransition
+                        in={this.state.menuState}
+                        onEnter={this.handleOnEnter}
+                        onExit={this.handleOnExit}
+                        timeout={{ enter: this.MENU_CONTAINER_ENTER_TIME, exit: this.MENU_CONTAINER_OUT_TIME }}
+                        classNames="bubble"
+                        mountOnEnter
+                        unmountOnExit
+                    >
+                        <span id="menu-bubble"></span>
+                    </CSSTransition>
+                </div>
+
+                {this.state.menuState &&
+                    <div id='menu-container'>
+                        <ol>
+                            {menuItemComponents}
+                        </ol>
+                    </div>
+                }
+
+                {/* <CSSTransition
                     in={this.state.menuState}
-                    onEnter={this.handleOnEntered}
+                    onEnter={this.handleOnEnter}
                     onExit={this.handleOnExit}
                     timeout={{ enter: this.MENU_CONTAINER_ENTER_TIME, exit: this.MENU_CONTAINER_OUT_TIME }}
                     classNames="menu"
@@ -99,7 +132,7 @@ class Nav extends Component {
                             {menuItemComponents}
                         </ol>
                     </div>
-                </CSSTransition>
+                </CSSTransition> */}
             </nav>
         )
     }
